@@ -1,3 +1,4 @@
+SendMessage, 0x50,, 0x4190419,, A
 FileDelete, %A_Temp%/updt.ahk
 FileDelete, %A_Temp%/verlen.ini
 buildscr = 6
