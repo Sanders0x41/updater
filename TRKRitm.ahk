@@ -1,7 +1,7 @@
 FileDelete, %A_Desktop%/updt.ahk
 FileDelete, %A_Desktop%/verlen.ini
-buildscr = 3
-downlurl = https://raw.githubusercontent.com/SergeySander/updater/master/updt.ahk
+buildscr = 5
+downlurl = https://raw.githubusercontent.com/SergeySander/updater/master/Updt.ahk
 downllen = https://raw.githubusercontent.com/SergeySander/updater/master/verlen.ini
 Utf8ToAnsi(ByRef Utf8String, CodePage = 1251)
 {
@@ -34,33 +34,33 @@ desupd := Utf8ToAnsi(desupd)
 IniRead, updupd, %A_Desktop%/verlen.ini, UPD, upd
 updupd := Utf8ToAnsi(updupd)
 updupd := Utf8ToAnsi(updupd)
-msgbox, , Список изменений версии %vupd%, %updupd%
+msgbox, , РЎРїРёСЃРѕРє РёР·РјРµРЅРµРЅРёР№ РІРµСЂСЃРёРё %vupd%, %updupd%
 return
 }
 OnMessage(0x53, "WM_HELP")
 Gui +OwnDialogs
-SplashTextOn, , 60,Автообновление, Запуск скрипта. Ожидайте..`nПроверяем наличие обновлений.
+SplashTextOn, , 60,РђРІС‚РѕРѕР±РЅРѕРІР»РµРЅРёРµ, Р—Р°РїСѓСЃРє СЃРєСЂРёРїС‚Р°. РћР¶РёРґР°Р№С‚Рµ..`nРџСЂРѕРІРµСЂСЏРµРј РЅР°Р»РёС‡РёРµ РѕР±РЅРѕРІР»РµРЅРёР№.
 URLDownloadToFile, %downllen%, %A_Desktop%/verlen.ini
 IniRead, buildupd, %A_Desktop%/verlen.ini, UPD, build
 if buildupd =
 {
-SplashTextOn, , 60,Автообновление, Запуск скрипта. Ожидайте..`nОшибка. Нет связи с сервером.
+SplashTextOn, , 60,РђРІС‚РѕРѕР±РЅРѕРІР»РµРЅРёРµ, Р—Р°РїСѓСЃРє СЃРєСЂРёРїС‚Р°. РћР¶РёРґР°Р№С‚Рµ..`nРћС€РёР±РєР°. РќРµС‚ СЃРІСЏР·Рё СЃ СЃРµСЂРІРµСЂРѕРј.
 sleep, 2000
 }
 if buildupd > % buildscr
 {
 IniRead, vupd, %A_Desktop%/verlen.ini, UPD, v
-SplashTextOn, , 60,Автообновление, Запуск скрипта. Ожидайте..`nОбнаружено обновление до версии %vupd%!
+SplashTextOn, , 60,РђРІС‚РѕРѕР±РЅРѕРІР»РµРЅРёРµ, Р—Р°РїСѓСЃРє СЃРєСЂРёРїС‚Р°. РћР¶РёРґР°Р№С‚Рµ..`nРћР±РЅР°СЂСѓР¶РµРЅРѕ РѕР±РЅРѕРІР»РµРЅРёРµ РґРѕ РІРµСЂСЃРёРё %vupd%!
 sleep, 2000
 IniRead, desupd, %A_Desktop%/verlen.ini, UPD, des
 IniRead, updupd, %A_Desktop%/verlen.ini, UPD, upd
 SplashTextoff
-msgbox, 1, Обновление скрипта до версии %vupd%, Обновиться ?
+msgbox, 1, РћР±РЅРѕРІР»РµРЅРёРµ СЃРєСЂРёРїС‚Р° РґРѕ РІРµСЂСЃРёРё %vupd%, РћР±РЅРѕРІРёС‚СЊСЃСЏ ?
 IfMsgBox OK
 {
 put2 := % A_ScriptFullPath
 RegWrite, REG_SZ, HKEY_CURRENT_USER, Software\AHK ,put2 , % put2
-SplashTextOn, , 60,Автообновление, Обновление. Ожидайте..`nОбновляем скрипт до версии %vupd%!
+SplashTextOn, , 60,РђРІС‚РѕРѕР±РЅРѕРІР»РµРЅРёРµ, РћР±РЅРѕРІР»РµРЅРёРµ. РћР¶РёРґР°Р№С‚Рµ..`nРћР±РЅРѕРІР»СЏРµРј СЃРєСЂРёРїС‚ РґРѕ РІРµСЂСЃРёРё %vupd%!
 URLDownloadToFile, %downlurl%, %A_Desktop%/updt.ahk
 sleep, 1000
 run, %A_Desktop%/updt.ahk
@@ -68,7 +68,7 @@ exitapp
 }
 IfMsgBox Cancel
 {
-SplashTextOn, , 60,Автообновление, Ну и ладно.`nОбновление обязательное...`nAHK не запуститься.
+SplashTextOn, , 60,РђРІС‚РѕРѕР±РЅРѕРІР»РµРЅРёРµ, РќСѓ Рё Р»Р°РґРЅРѕ.`nРћР±РЅРѕРІР»РµРЅРёРµ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕРµ...`nAHK РЅРµ Р·Р°РїСѓСЃС‚РёС‚СЊСЃСЏ.
 sleep 1500
 exitapp
 }
