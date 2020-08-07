@@ -1,13 +1,6 @@
-
-
 FileDelete, %A_Desktop%/updt.ahk
 FileDelete, %A_Desktop%/verlen.ini
-
-
-
 buildscr = 6
-
-
 
 downlurl = https://raw.githubusercontent.com/SergeySander/updater/master/Updt.ahk
 downllen = https://raw.githubusercontent.com/SergeySander/updater/master/verlen.ini
