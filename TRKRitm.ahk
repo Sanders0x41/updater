@@ -1,4 +1,4 @@
-Utf8ToAnsi(ByRef Utf8String, CodePage = 1251)
+Utf8ToAnsi()
 {
     If (NumGet(Utf8String) & 0xFFFFFF) = 0xBFBBEF
         BOM = 3
