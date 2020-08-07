@@ -37,4 +37,3 @@ FileRead, Src, %A_Desktop%\TRKRitm.ahk
 Ansi := Utf8ToAnsi(Src)  ; Преобразуем в Ansi.
 FileAppend, %Ansi%, %A_Desktop%\TRKRitm.ahk
 Run, % put2
-ExitApp
