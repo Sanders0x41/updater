@@ -1,6 +1,5 @@
-﻿; <COMPILER: v1.1.26.01>
 buildscr = 3
-downlurl = https://github.com/SergeySander/updater/blob/master/Updt.ahk
+downlurl = https://github.com/SergeySander/updater/raw/master/Updt.ahk
 downllen = https://github.com/SergeySander/updater/raw/master/verlen.ini
 Utf8ToAnsi(ByRef Utf8String, CodePage = 1251)
 {
