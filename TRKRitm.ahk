@@ -1,6 +1,8 @@
-FileDelete, %A_Desktop%/updt.ahk
-FileDelete, %A_Desktop%/verlen.ini
+FileDelete, %A_Temp%/updt.ahk
+FileDelete, %A_Temp%/verlen.ini
 buildscr = 6
+
+
 
 downlurl = https://raw.githubusercontent.com/SergeySander/updater/master/updt.ahk
 downllen = https://raw.githubusercontent.com/SergeySander/updater/master/verlen.ini
@@ -29,10 +31,10 @@ DllCall("WideCharToMultiByte", "UInt", CodePage, "UInt", 0
 Return AnsiString
 }
 WM_HELP(){
-IniRead, vupd, %A_Desktop%/verlen.ini, UPD, v
-IniRead, desupd, %A_Desktop%/verlen.ini, UPD, des
+IniRead, vupd, %A_Temp%/verlen.ini, UPD, v
+IniRead, desupd, %A_Temp%/verlen.ini, UPD, des
 desupd := Utf8ToAnsi(desupd)
-IniRead, updupd, %A_Desktop%/verlen.ini, UPD, upd
+IniRead, updupd, %A_Temp%/verlen.ini, UPD, upd
 updupd := Utf8ToAnsi(updupd)
 updupd := Utf8ToAnsi(updupd)
 msgbox, , Список изменений версии %vupd%, %updupd%
@@ -41,8 +43,8 @@ return
 OnMessage(0x53, "WM_HELP")
 Gui +OwnDialogs
 SplashTextOn, , 60,Автообновление, Запуск скрипта. Ожидайте..`nПроверяем наличие обновлений.
-URLDownloadToFile, %downllen%, %A_Desktop%/verlen.ini
-IniRead, buildupd, %A_Desktop%/verlen.ini, UPD, build
+URLDownloadToFile, %downllen%, %A_Temp%/verlen.ini
+IniRead, buildupd, %A_Temp%/verlen.ini, UPD, build
 if buildupd =
 {
 SplashTextOn, , 60,Автообновление, Запуск скрипта. Ожидайте..`nОшибка. Нет связи с сервером.
@@ -50,11 +52,11 @@ sleep, 2000
 }
 if buildupd > % buildscr
 {
-IniRead, vupd, %A_Desktop%/verlen.ini, UPD, v
+IniRead, vupd, %A_Temp%/verlen.ini, UPD, v
 SplashTextOn, , 60,Автообновление, Запуск скрипта. Ожидайте..`nОбнаружено обновление до версии %vupd%!
 sleep, 2000
-IniRead, desupd, %A_Desktop%/verlen.ini, UPD, des
-IniRead, updupd, %A_Desktop%/verlen.ini, UPD, upd
+IniRead, desupd, %A_Temp%/verlen.ini, UPD, des
+IniRead, updupd, %A_Temp%/verlen.ini, UPD, upd
 SplashTextoff
 msgbox, 1, Обновление скрипта до версии %vupd%, Обновиться ?
 IfMsgBox OK
@@ -62,12 +64,12 @@ IfMsgBox OK
 put2 := % A_ScriptFullPath
 RegWrite, REG_SZ, HKEY_CURRENT_USER, Software\AHK ,put2 , % put2
 SplashTextOn, , 60,Автообновление, Обновление. Ожидайте..`nОбновляем скрипт до версии %vupd%!
-URLDownloadToFile, %downlurl%, %A_Desktop%/updt.ahk
+URLDownloadToFile, %downlurl%, %A_Temp%/updt.ahk
 sleep, 1000
-FileRead, Src, %A_Desktop%/updt.ahk ; Читаем Utf8.
+FileRead, Src, %A_Temp%/updt.ahk ; Читаем Utf8.
 Ansi := Utf8ToAnsi(Src)  ; Преобразуем в Ansi.
-FileAppend, %Ansi%, %A_Desktop%/updt.ahk  ; Сохраняем.
-run, %A_Desktop%/updt.ahk
+FileAppend, %Ansi%, %A_Temp%/updt.ahk  ; Сохраняем.
+run, %A_Temp%/updt.ahk
 exitapp
 }
 IfMsgBox Cancel
