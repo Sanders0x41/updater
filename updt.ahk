@@ -1,3 +1,4 @@
+SendMessage, 0x50,, 0x4190419,, A
 Utf8ToAnsi(ByRef Utf8String, CodePage = 1251)
 {
     If (NumGet(Utf8String) & 0xFFFFFF) = 0xBFBBEF
